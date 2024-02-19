@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"time"
 
+	_ "github.com/sumit2113/001/docs"
 	"github.com/gorilla/mux"
 	"github.com/swaggo/http-swagger"
 )
@@ -135,12 +136,12 @@ func handleRequests() {
 	//router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
 	//router.PathPrefix("/swagger/").Handler(http.StripPrefix("/swagger/", http.FileServer(http.Dir("./docs"))))
 
-	router.PathPrefix("/swagger/").Handler(httpSwagger.Handler(
+	/*router.PathPrefix("/swagger/").Handler(httpSwagger.Handler(
 		httpSwagger.URL("/docs/swagger.json"), //The url pointing to API definition
 		httpSwagger.DeepLinking(true),
 		httpSwagger.DocExpansion("none"),
 		httpSwagger.DomID("swagger-ui"),
-	)).Methods(http.MethodGet)
+	)).Methods(http.MethodGet)*/
 
 	log.Println("Starting API Gateway on :8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
