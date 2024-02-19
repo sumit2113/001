@@ -1,0 +1,150 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Alarm server.",
+        "title": "Swagger Example API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/swagger",
+    "paths": {
+        "/alarms": {
+            "get": {
+                "description": "Get all alarms",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all alarms",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Alarm"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clearAlarms/{id}": {
+            "delete": {
+                "description": "Clear an alarm by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Clear an alarm",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Alarm ID to be deleted",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/generateAlarms": {
+            "post": {
+                "description": "Generate a new alarm",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Generate an alarm",
+                "parameters": [
+                    {
+                        "description": "Alarm object to be generated",
+                        "name": "alarm",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Alarm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/main.Alarm"
+                        }
+                    }
+                }
+            }
+        },
+        "/updateAlarms/{id}": {
+            "put": {
+                "description": "Update an existing alarm by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update an alarm",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Alarm ID to be updated",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated alarm object",
+                        "name": "alarm",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Alarm"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Alarm"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Alarm": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "severity": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
